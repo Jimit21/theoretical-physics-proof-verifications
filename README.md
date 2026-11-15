@@ -15,7 +15,7 @@
 
 For 48 years—ever since Dyson, Lieb, and Simon (1978) proved long-range order in the quantum *antiferromagnet* using reflection positivity and infrared bounds—proving the existence of **spontaneous magnetization** at positive temperature ($T > 0$) in the isotropic nearest-neighbor **quantum Heisenberg ferromagnet** in $d \ge 3$ dimensions remained one of the premier open problems in mathematical physics.
 
-This repository contains the full verification report and official review JSON file for the AI-generated mathematical physics manuscript from OpenAI's `openai/math` collection (Family 271).
+This repository contains the full verification report, complete section-by-section mathematical physics audits, suggested LaTeX fixes for minor presentation issues, and the official review JSON file for the AI-generated mathematical physics manuscript from OpenAI's `openai/math` collection (Family 271).
 
 ### The Main Theorem (Theorem 1.1)
 
@@ -26,85 +26,39 @@ Every derivation step, lemma, and proposition across the entire manuscript was a
 
 ---
 
-## Mathematical Architecture of the Proof
+## Repository Structure
 
 ```
-+-----------------------------------------------------------------------------------+
-| Section 0: Introduction, Hamiltonian, KMS Condition, and Theorem 1.1 Statement   |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 1: Symmetric-Slot Decomposition and Poisson Loop Representation          |
-| - Clebsch-Gordan slot projection: S_x = sum s_(x,j)                               |
-| - Transposition identity: s_i . s_j = 1/2 U_(ij) - 1/4 I                          |
-| - Partition function: Z = exp(beta q/4) E_b [2^{c(omega)}]                       |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 2: Simultaneous Pin Test & Negative Dependence (Stable Polynomials)      |
-| - Exchange symbol E[F_pi(x, y)] is stable (no roots in upper half-plane H^n)     |
-| - Borcea-Brändén-Liggett negative covariance: Cov(X_1, X_2) = ea - bc <= 0        |
-| - Avoidance probability bounded by return fraction: P_E(T in B_E) <= (2r)^m       |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 3: Exposure, Determinantal Duality, and Dirichlet Energy Dissipation      |
-| - Rank-one minor identity: E[/wedge^k Pi] = /wedge^k K                           |
-| - Schur block elimination: E[Sigma | G_J] = K_JJ + K_JQ (I - K_QQ)^{-1} K_QJ     |
-| - Single-particle Markov walk reduction: m(1 - r) >= E_P <f, (I - U)f>           |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 4: Sparse Geometry, Obstacle Percolation, and the Local Nash Inequality   |
-| - Subcritical obstacle percolation: P(rad C >= h) <= C exp(-c h^gamma)           |
-| - Topological connectivity: removing < 2d sites cannot disconnect Z^d             |
-| - Local Nash inequality: ||v||_2^{2+4/d} <= C D(v) ||v||_1^{4/d}                  |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 5: Decaying Thomson Network Flows                                         |
-| - Discrete Gauss divergence theorem: <mu, g> = sum J(e) (g(u) - g(v))             |
-| - Unblocked detour routing around obstacle hulls: |J_a(e)| <= C (1 + dist)^{-k}   |
-| - Geometric sparsity sums mutual overlaps: |<sum mu_i, g>| <= sqrt(C m R^alpha D) |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 6: Heat-Flow Leakage and Downward Induction Bootstrap                     |
-| - Nash differential inequality d/dt q <= -c q^{1+2/d} dilutes mass to O(s^{-d/2})  |
-| - Weighted Young integration absorbs cross-term into Dirichlet dissipation        |
-| - Exponent check: every error scales as O(p^{1.089}) = o(p)                       |
-| - 2 eps(p) <= p closes downward induction: P_D0(j in B_D0) <= p_* < 1/4          |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| Section 7: Thermodynamic Limit, Vanishing Field, and KMS Boundary Verification    |
-| - Bulk volume (N^d) dominates surface area (N^{d-1}) in d >= 3                    |
-| - Infinitesimal Zeeman field h_N = N^{-1/2} -> 0 selects positive tail            |
-| - Phragmén-Lindelöf strip bounds verify KMS detailed balance: omega(S_0^z) >= S/4 |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼
-+-----------------------------------------------------------------------------------+
-| VERDICT: Theorem 1.1 Mathematically Sound and Rigorously Proven                   |
-+-----------------------------------------------------------------------------------+
+├── openverification_review.json              # Official JSON review file for OpenVerification (<= 80 char model)
+├── README.md                                 # Master verification summary and proof architecture
+└── family-271-quantum-heisenberg-ferromagnet/
+    ├── openverification_review.json          # Review JSON copy
+    ├── suggested_latex_fixes.md              # Exact drop-in LaTeX corrections for issues 1, 2, and 3
+    └── audits/
+        ├── final_verification_report.md       # Comprehensive master verification report
+        ├── section0_audit.md                  # Section 0: Model & Theorem 1.1 Statement
+        ├── section1_audit.md                  # Section 1: Spin Slots, Loops, and Pins
+        ├── section2_audit.md                  # Section 2: Simultaneous Pin Test & Stable Polynomials
+        ├── section3_audit.md                  # Section 3: Exposure & Determinantal Duality
+        ├── section4_audit.md                  # Section 4: Sparse Obstacles & Local Nash Inequality
+        ├── section5_audit.md                  # Section 5: Decaying Thomson Network Flows
+        ├── section6_audit.md                  # Section 6: Heat-Flow Leakage & Pin Bootstrap
+        └── section7_audit.md                  # Section 7: KMS State & Thermodynamic Limit
 ```
 
 ---
 
-## Files in this Repository
+## Detailed Section Audits
 
-| File | Description |
-| :--- | :--- |
-| **`openverification_review.json`** | Standardized JSON review file ready for upload to [openaireview.org/contribute.html](https://openaireview.org/contribute.html). |
-| **`openverification_review/openverification_review.json`** | Secondary copy structured for automated agent review pipelines. |
-| **`README.md`** | Complete academic summary, proof architecture, and reviewer credentials. |
+1. **[Section 0 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section0_audit.md):** Physical model, C*-algebraic setup, KMS conditions, and proof strategy.
+2. **[Section 1 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section1_audit.md):** Symmetric-slot Clebsch-Gordan algebra, transposition identity, and Poisson loop representation.
+3. **[Section 2 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section2_audit.md):** Simultaneous pin test and negative dependence via Borcea-Brändén-Liggett stable polynomials.
+4. **[Section 3 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section3_audit.md):** Exposure conditioning, Dereziński-Liang-Mahoney rank-1 exterior minors, and Dirichlet dissipation.
+5. **[Section 4 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section4_audit.md):** Binary witness trees, subcritical obstacle percolation tails, and local Nash inequality.
+6. **[Section 5 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section5_audit.md):** Plaquette boundary connectivity, decaying divergence-free Thomson network flows, and sparsity bounds.
+7. **[Section 6 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section6_audit.md):** Continuous-time heat diffusion, weighted Young integration, $o(p)$ error scaling, and pin bootstrap closure.
+8. **[Section 7 Audit](family-271-quantum-heisenberg-ferromagnet/audits/section7_audit.md):** Surface-to-volume ratio tail selection, vanishing Zeeman field, Lieb-Robinson dynamics, and full KMS verification.
+9. **[Suggested LaTeX Fixes](family-271-quantum-heisenberg-ferromagnet/suggested_latex_fixes.md):** Exact code snippets addressing the three minor presentation and notational issues.
 
 ---
 
