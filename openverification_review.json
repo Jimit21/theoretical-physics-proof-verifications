@@ -3,7 +3,7 @@
   "collection": "openai-math",
   "commit": "4eaee87548250b2682affda7d05d947c05554bae",
   "agent": "Google Antigravity",
-  "model": "Claude Opus 4.6 & Gemini 3.8 Flash (Audited and Verified by Jimit Pandya, M.Sc. Physics, B.Ed.)",
+  "model": "Claude Opus 4.6 & Gemini 3.8 Flash (Verified by Jimit Pandya, M.Sc. Physics)",
   "timestamp": "2026-11-15T10:08:00Z",
   "reviewer": "Jimit Pandya (M.Sc. Physics, B.Ed.)",
   "overall_verdict": "valid",
